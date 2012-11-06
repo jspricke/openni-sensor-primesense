@@ -1,0 +1,62 @@
+From: Jochen Sprickerhof <jochen@sprickerhof.de>
+Date: Tue, 6 Nov 2012 20:38:26 +0100
+Subject: Add support for vendor id in Enumerate() USB devices
+
+taken from https://kforge.ros.org/openni/drivers
+---
+ Source/XnDeviceSensorV2/XnDeviceSensorIO.cpp |   14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/Source/XnDeviceSensorV2/XnDeviceSensorIO.cpp b/Source/XnDeviceSensorV2/XnDeviceSensorIO.cpp
+index 4d9b0b4..87097a1 100644
+--- a/Source/XnDeviceSensorV2/XnDeviceSensorIO.cpp
++++ b/Source/XnDeviceSensorV2/XnDeviceSensorIO.cpp
+@@ -353,14 +353,14 @@ XnStatus XnSensorIO::CloseDevice()
+ 	return (XN_STATUS_OK);
+ }
+ 
+-XnStatus Enumerate(XnUInt16 nProduct, XnStringsHash& devicesSet)
++XnStatus Enumerate(XnUInt16 nVendor, XnUInt16 nProduct, XnStringsHash& devicesSet)
+ {
+ 	XnStatus nRetVal = XN_STATUS_OK;
+ 	
+ 	const XnUSBConnectionString* astrDevicePaths;
+ 	XnUInt32 nCount;
+ 
+-	nRetVal = xnUSBEnumerateDevices(XN_SENSOR_VENDOR_ID, nProduct, &astrDevicePaths, &nCount);
++	nRetVal = xnUSBEnumerateDevices(nVendor, nProduct, &astrDevicePaths, &nCount);
+ 	XN_IS_STATUS_OK(nRetVal);
+ 
+ 	for (XnUInt32 i = 0; i < nCount; ++i)
+@@ -389,26 +389,26 @@ XnStatus XnSensorIO::EnumerateSensors(XnConnectionString* aConnectionStrings, Xn
+ 	if (devicesSet.Size() == 0)
+ 	{
+ 		// search for a v6.0.1 device
+-		nRetVal = Enumerate(XN_SENSOR_6_0_1_PRODUCT_ID, devicesSet);
++		nRetVal = Enumerate(XN_SENSOR_VENDOR_ID, XN_SENSOR_6_0_1_PRODUCT_ID, devicesSet);
+ 		XN_IS_STATUS_OK(nRetVal);
+ 
+ 		// search for a v6.0 device
+-		nRetVal = Enumerate(XN_SENSOR_6_0_PRODUCT_ID, devicesSet);
++		nRetVal = Enumerate(XN_SENSOR_VENDOR_ID, XN_SENSOR_6_0_PRODUCT_ID, devicesSet);
+ 		XN_IS_STATUS_OK(nRetVal);	
+ 	}
+ #else
+ 	XnStringsHash devicesSet;
+ 
+ 	// search for a v6.0.1 device
+-	nRetVal = Enumerate(XN_SENSOR_6_0_1_PRODUCT_ID, devicesSet);
++	nRetVal = Enumerate(XN_SENSOR_VENDOR_ID, XN_SENSOR_6_0_1_PRODUCT_ID, devicesSet);
+ 	XN_IS_STATUS_OK(nRetVal);
+ 
+ 	// search for a v6.0 device
+-	nRetVal = Enumerate(XN_SENSOR_6_0_PRODUCT_ID, devicesSet);
++	nRetVal = Enumerate(XN_SENSOR_VENDOR_ID, XN_SENSOR_6_0_PRODUCT_ID, devicesSet);
+ 	XN_IS_STATUS_OK(nRetVal);
+ 
+ 	// search for a v5.0 device
+-	nRetVal = Enumerate(XN_SENSOR_5_0_PRODUCT_ID, devicesSet);
++	nRetVal = Enumerate(XN_SENSOR_VENDOR_ID, XN_SENSOR_5_0_PRODUCT_ID, devicesSet);
+ 	XN_IS_STATUS_OK(nRetVal);
+ #endif
+ 	

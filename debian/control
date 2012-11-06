@@ -1,0 +1,45 @@
+Source: openni-sensor-primesense
+Priority: optional
+Maintainer: Jochen Sprickerhof <launchpad@jochen.sprickerhof.de>
+Build-Depends: debhelper (>= 8.0.0),
+               python,
+               libjpeg8-dev,
+               libopenni-dev (>= 1.1.0.41)
+Standards-Version: 3.9.3
+Section: libs
+Homepage: http://www.openni.org
+Vcs-Git: git://git.debian.org/pkg-multimedia/openni-sensor-primesense.git
+Vcs-Browser: http://git.debian.org/?p=pkg-multimedia/openni-sensor-primesense.git;a=summary
+
+Package: libopenni-sensor-primesense-dev
+Section: libdevel
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libopenni-sensor-primesense0 (= ${binary:Version})
+Description:  Microsoft Kinect sensor modules for the OpenNI framework
+ OpenNI is a framework for getting data to support 'Natural Interaction',
+ i.e. skeleton tracking, gesture tracking, and similar ways of getting data
+ from humans. This package provides modules for OpenNI that get the data from
+ the Kinect camera for processing with the OpenNI Middleware, like PrimeSense
+ NITE.
+
+Package: libopenni-sensor-primesense0
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, openni-utils
+Description:  Microsoft Kinect sensor modules for the OpenNI framework
+ OpenNI is a framework for getting data to support 'Natural Interaction',
+ i.e. skeleton tracking, gesture tracking, and similar ways of getting data
+ from humans. This package provides modules for OpenNI that get the data from
+ the Kinect camera for processing with the OpenNI Middleware, like PrimeSense
+ NITE.
+
+Package: openni-sensor-primesense-bin
+Section: utils
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description:  Microsoft Kinect sensor modules for the OpenNI framework
+ OpenNI is a framework for getting data to support 'Natural Interaction',
+ i.e. skeleton tracking, gesture tracking, and similar ways of getting data
+ from humans. This package provides modules for OpenNI that get the data from
+ the Kinect camera for processing with the OpenNI Middleware, like PrimeSense
+ NITE.

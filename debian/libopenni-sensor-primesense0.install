@@ -1,0 +1,2 @@
+Platform/Linux/Bin/*-Release/*.so.* usr/lib/
+Platform/Linux/Redist/Sensor-Bin-Linux-*/Config/*.ini etc/openni

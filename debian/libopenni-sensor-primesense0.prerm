@@ -1,0 +1,30 @@
+#!/bin/sh
+
+set -e
+
+MODULE_DIR="/usr/lib/"
+MODULES="libXnDeviceSensorV2.so.0 libXnDeviceFile.so.0"
+
+
+case "$1" in
+    remove)
+        for module in $MODULES; do
+          niReg -u $MODULE_DIR/$module /etc/openni
+        done
+    ;;
+
+    upgrade|deconfigure)
+    ;;
+
+    failed-upgrade)
+    ;;
+
+    *)
+        echo "prerm called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+esac
+
+#DEBHELPER#
+
+exit 0

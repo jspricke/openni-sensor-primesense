@@ -1,0 +1,21 @@
+From: Jochen Sprickerhof <jochen@sprickerhof.de>
+Date: Tue, 6 Nov 2012 20:43:10 +0100
+Subject: Change host protocol
+
+taken from https://github.com/avin2/SensorKinect
+---
+ Source/XnDeviceSensorV2/XnSensorDepthStream.cpp |    1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Source/XnDeviceSensorV2/XnSensorDepthStream.cpp b/Source/XnDeviceSensorV2/XnSensorDepthStream.cpp
+index 5c2ed2e..f9a0c9f 100644
+--- a/Source/XnDeviceSensorV2/XnSensorDepthStream.cpp
++++ b/Source/XnDeviceSensorV2/XnSensorDepthStream.cpp
+@@ -319,6 +319,7 @@ XnStatus XnSensorDepthStream::ConfigureStreamImpl()
+ 	nRetVal = m_Helper.GetCmosInfo()->SetCmosConfig(XN_CMOS_TYPE_DEPTH, GetResolution(), GetFPS());
+ 	XN_IS_STATUS_OK(nRetVal);
+ 
++  XnHostProtocolSetParam(GetHelper()->GetPrivateData(), 0x105, 0);
+ 	return XN_STATUS_OK;
+ }
+ 

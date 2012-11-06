@@ -1,0 +1,37 @@
+From: Jochen Sprickerhof <jochen@sprickerhof.de>
+Date: Tue, 6 Nov 2012 20:35:59 +0100
+Subject: Fix types
+
+taken from https://github.com/avin2/SensorKinect
+---
+ Source/XnDeviceSensorV2/XnDataProcessor.h        |    2 +-
+ Source/XnDeviceSensorV2/XnDeviceSensorProtocol.h |    3 ++-
+ 2 files changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/Source/XnDeviceSensorV2/XnDataProcessor.h b/Source/XnDeviceSensorV2/XnDataProcessor.h
+index 7132346..6f6cbb4 100644
+--- a/Source/XnDeviceSensorV2/XnDataProcessor.h
++++ b/Source/XnDeviceSensorV2/XnDataProcessor.h
+@@ -86,7 +86,7 @@ protected:
+ 	/* The number of bytes received so far (since last time this member was reset). */
+ 	XnUInt32 m_nBytesReceived;
+ 	/* Stores last packet ID */
+-	XnUInt16 m_nLastPacketID;
++  XnUInt8  m_nLastPacketID;
+ 	/* The name of the stream. */
+ 	const XnChar* m_csName;
+ 
+diff --git a/Source/XnDeviceSensorV2/XnDeviceSensorProtocol.h b/Source/XnDeviceSensorV2/XnDeviceSensorProtocol.h
+index 057d925..661d83a 100644
+--- a/Source/XnDeviceSensorV2/XnDeviceSensorProtocol.h
++++ b/Source/XnDeviceSensorV2/XnDeviceSensorProtocol.h
+@@ -82,7 +82,8 @@ typedef struct XnSensorProtocolResponseHeader
+ {
+ 	XnUInt16 nMagic;
+ 	XnUInt16 nType;
+-	XnUInt16 nPacketID;
++  XnUInt8  nPacketID;
++  XnUInt8  nUnknown;
+ 	XnUInt16 nBufSize;
+ 	XnUInt32 nTimeStamp;
+ } XnSensorProtocolResponseHeader;

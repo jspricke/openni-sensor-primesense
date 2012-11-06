@@ -1,0 +1,2 @@
+Platform/Linux/Bin/*-Release/*.so usr/lib/
+debian/ps-engine.pc usr/lib/pkgconfig

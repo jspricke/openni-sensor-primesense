@@ -1,0 +1,33 @@
+From: Jochen Sprickerhof <jochen@sprickerhof.de>
+Date: Wed, 7 Nov 2012 00:03:03 +0100
+Subject: Remove call to XnLockedServerStreamsHash
+
+taken from https://github.com/rbrusu/Sensor
+---
+ Source/XnDeviceSensorV2/XnServerSensorInvoker.h |    8 +-------
+ 1 file changed, 1 insertion(+), 7 deletions(-)
+
+diff --git a/Source/XnDeviceSensorV2/XnServerSensorInvoker.h b/Source/XnDeviceSensorV2/XnServerSensorInvoker.h
+index dbeeb29..c73cff9 100644
+--- a/Source/XnDeviceSensorV2/XnServerSensorInvoker.h
++++ b/Source/XnDeviceSensorV2/XnServerSensorInvoker.h
+@@ -104,12 +104,6 @@ private:
+ 			m_locker(other.m_locker)
+ 		{}
+ 
+-		inline XnLockedServerStreamsHash& operator=(const XnLockedServerStreamsHash& other)
+-		{
+-			this->m_hash = other.m_hash;
+-			this->m_locker = other.m_locker;
+-			return *this;
+-		}
+ 
+ 		inline _XnServerStreamsHash::Iterator begin()
+ 		{
+@@ -205,4 +199,4 @@ private:
+ 	XnServerStreamsHash m_streams;
+ };
+ 
+-#endif // __XN_SERVER_SENSOR_INVOKER_H__
+\ No newline at end of file
++#endif // __XN_SERVER_SENSOR_INVOKER_H__

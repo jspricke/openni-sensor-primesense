@@ -1,0 +1,22 @@
+From: Jochen Sprickerhof <jochen@sprickerhof.de>
+Date: Tue, 6 Nov 2012 20:45:19 +0100
+Subject: Fix parallel build
+
+taken from https://kforge.ros.org/openni/drivers
+---
+ Platform/Linux/CreateRedist/RedistMaker |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Platform/Linux/CreateRedist/RedistMaker b/Platform/Linux/CreateRedist/RedistMaker
+index cb4489c..4d58a30 100644
+--- a/Platform/Linux/CreateRedist/RedistMaker
++++ b/Platform/Linux/CreateRedist/RedistMaker
+@@ -67,7 +67,7 @@ rm -rf ../$REDIST_DIR
+ # Build Engine
+ echo "Building..."
+ make -C ../Build clean > /dev/null
+-make -j$(calc_jobs_number) -C ../Build
++make -C ../Build
+ 
+ # create redist folder structure
+ echo "Creating redist folder..."

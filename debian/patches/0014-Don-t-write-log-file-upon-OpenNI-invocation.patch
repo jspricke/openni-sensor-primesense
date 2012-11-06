@@ -1,0 +1,21 @@
+From: Jochen Sprickerhof <jochen@sprickerhof.de>
+Date: Tue, 6 Nov 2012 20:45:05 +0100
+Subject: Don't write log file upon OpenNI invocation
+
+---
+ Data/GlobalDefaults.ini |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Data/GlobalDefaults.ini b/Data/GlobalDefaults.ini
+index fcfec6c..527cb34 100644
+--- a/Data/GlobalDefaults.ini
++++ b/Data/GlobalDefaults.ini
+@@ -6,7 +6,7 @@ LogMasks=ALL
+ ; 0 - No (default), 1 - Yes
+ ;LogWriteToConsole=1
+ ; 0 - No (default), 1 - Yes
+-LogWriteToFile=1
++;LogWriteToFile=1
+ ; 0 - No (default), 1 - Yes
+ ;LogWriteLineInfo=0
+ ; leave empty for nothing (default). ALL - all masks

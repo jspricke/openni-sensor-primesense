@@ -1,0 +1,23 @@
+From: Jochen Sprickerhof <jochen@sprickerhof.de>
+Date: Tue, 6 Nov 2012 20:38:08 +0100
+Subject: Disable setting USB interface
+
+taken from https://kforge.ros.org/openni/drivers
+---
+ Source/XnDeviceSensorV2/XnDeviceSensorIO.cpp |    3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/Source/XnDeviceSensorV2/XnDeviceSensorIO.cpp b/Source/XnDeviceSensorV2/XnDeviceSensorIO.cpp
+index 50f23d5..4d9b0b4 100644
+--- a/Source/XnDeviceSensorV2/XnDeviceSensorIO.cpp
++++ b/Source/XnDeviceSensorV2/XnDeviceSensorIO.cpp
+@@ -147,9 +147,6 @@ XnStatus XnSensorIO::OpenDataEndPoints(XnSensorUsbInterface nInterface, const Xn
+ 			XN_LOG_WARNING_RETURN(XN_STATUS_USB_INTERFACE_NOT_SUPPORTED, XN_MASK_DEVICE_IO, "Unknown interface type: %d", nInterface);
+ 		}
+ 
+-		xnLogVerbose(XN_MASK_DEVICE_IO, "Setting USB alternative interface to %d...", nAlternativeInterface);
+-		nRetVal = xnUSBSetInterface(m_pSensorHandle->USBDevice, 0, nAlternativeInterface);
+-		XN_IS_STATUS_OK(nRetVal);
+ 	}
+ 
+ 	xnLogVerbose(XN_MASK_DEVICE_IO, "Opening endpoints...");
