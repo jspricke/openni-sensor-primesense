@@ -3,7 +3,7 @@ Priority: optional
 Maintainer: Jochen Sprickerhof <launchpad@jochen.sprickerhof.de>
 Build-Depends: debhelper (>= 8.0.0),
                python,
-               libjpeg8-dev,
+               libjpeg-dev,
                libopenni-dev (>= 1.1.0.41)
 Standards-Version: 3.9.3
 Section: libs
