@@ -1,3 +1,9 @@
+openni-sensor-primesense (5.1.0.41-2) unstable; urgency=low
+
+  * Drop openni-sensor-primesense-bin
+
+ -- Jochen Sprickerhof <launchpad@jochen.sprickerhof.de>  Thu, 20 Dec 2012 20:55:45 +0100
+
 openni-sensor-primesense (5.1.0.41-1) unstable; urgency=low
 
   * Initial release (Closes: #628445)
