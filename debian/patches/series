@@ -17,3 +17,4 @@
 0017-Use-system-wide-libjpeg.patch
 0018-Fix-include-dirs.patch
 0019-Remove-call-to-XnLockedServerStreamsHash.patch
+0020-Move-XnSensorServer-to-usr-lib-libopenni-sensor-prim.patch

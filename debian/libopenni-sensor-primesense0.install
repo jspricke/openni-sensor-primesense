@@ -1,2 +1,3 @@
 Platform/Linux/Bin/*-Release/*.so.* usr/lib/
 Platform/Linux/Redist/Sensor-Bin-Linux-*/Config/*.ini etc/openni
+Platform/Linux/Bin/*-Release/XnSensorServer usr/lib/libopenni-sensor-primesense0/

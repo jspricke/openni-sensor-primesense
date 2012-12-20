@@ -1,0 +1,21 @@
+From: Jochen Sprickerhof <jochen@sprickerhof.de>
+Date: Thu, 20 Dec 2012 20:33:14 +0100
+Subject: Move XnSensorServer to /usr/lib/libopenni-sensor-primesense0
+
+---
+ Source/XnDeviceSensorV2/XnSensorClient.cpp |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Source/XnDeviceSensorV2/XnSensorClient.cpp b/Source/XnDeviceSensorV2/XnSensorClient.cpp
+index 7907999..a010f3f 100644
+--- a/Source/XnDeviceSensorV2/XnSensorClient.cpp
++++ b/Source/XnDeviceSensorV2/XnSensorClient.cpp
+@@ -883,7 +883,7 @@ XnStatus XnSensorClient::StartServerProcess()
+ #if (XN_PLATFORM == XN_PLATFORM_WIN32)
+ 	nRetVal = GetModuleDir(strServerDir);
+ #elif (XN_PLATFORM == XN_PLATFORM_LINUX_X86 || XN_PLATFORM == XN_PLATFORM_LINUX_ARM || XN_PLATFORM == XN_PLATFORM_MACOSX)
+-	sprintf(strServerDir, "/usr/bin");
++	sprintf(strServerDir, "/usr/lib/libopenni-sensor-primesense0");
+ #endif
+ 
+ 	XnChar strProcessName[XN_FILE_MAX_PATH];
