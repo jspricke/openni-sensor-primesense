@@ -1,0 +1,21 @@
+From: Jochen Sprickerhof <jochen@sprickerhof.de>
+Date: Tue, 6 Nov 2012 20:38:48 +0100
+Subject: Add support for XN sensor version 2
+
+taken from https://kforge.ros.org/openni/drivers
+---
+ Source/XnDeviceSensorV2/XnDeviceSensorIO.cpp |    1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Source/XnDeviceSensorV2/XnDeviceSensorIO.cpp b/Source/XnDeviceSensorV2/XnDeviceSensorIO.cpp
+index 7ceab5d..2c5f208 100644
+--- a/Source/XnDeviceSensorV2/XnDeviceSensorIO.cpp
++++ b/Source/XnDeviceSensorV2/XnDeviceSensorIO.cpp
+@@ -45,6 +45,7 @@ typedef enum
+ //---------------------------------------------------------------------------
+ XnUInt16 XnSensorIO::ms_supportedProducts[] = 
+ {
++	0x0200,
+ 	0x0500,
+ 	0x0600,
+ 	0x0601,

@@ -9,7 +9,7 @@ well to get clean CFLAGS.
  1 file changed, 1 insertion(+), 3 deletions(-)
 
 diff --git a/Platform/Linux/Build/Common/Platform.x86 b/Platform/Linux/Build/Common/Platform.x86
-index 1891a27..91a6f1a 100644
+index 1891a27..8d3a8e9 100644
 --- a/Platform/Linux/Build/Common/Platform.x86
 +++ b/Platform/Linux/Build/Common/Platform.x86
 @@ -2,7 +2,7 @@

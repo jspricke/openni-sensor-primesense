@@ -7,7 +7,7 @@ Subject: Add SONAME to libraries
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/Platform/Linux/Build/Common/CommonCppMakefile b/Platform/Linux/Build/Common/CommonCppMakefile
-index 5a15c82..dadc461 100644
+index 5a15c82..b6bbfe4 100644
 --- a/Platform/Linux/Build/Common/CommonCppMakefile
 +++ b/Platform/Linux/Build/Common/CommonCppMakefile
 @@ -77,8 +77,8 @@ ifneq "$(LIB_NAME)" ""

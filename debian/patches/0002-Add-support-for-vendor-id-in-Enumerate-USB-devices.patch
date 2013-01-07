@@ -1,0 +1,48 @@
+From: Jochen Sprickerhof <jochen@sprickerhof.de>
+Date: Tue, 6 Nov 2012 20:38:26 +0100
+Subject: Add support for vendor id in Enumerate() USB devices
+
+taken from https://kforge.ros.org/openni/drivers
+---
+ Source/XnDeviceSensorV2/XnDeviceSensorIO.cpp |    8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/Source/XnDeviceSensorV2/XnDeviceSensorIO.cpp b/Source/XnDeviceSensorV2/XnDeviceSensorIO.cpp
+index eacf514..7ceab5d 100644
+--- a/Source/XnDeviceSensorV2/XnDeviceSensorIO.cpp
++++ b/Source/XnDeviceSensorV2/XnDeviceSensorIO.cpp
+@@ -368,14 +368,14 @@ XnStatus XnSensorIO::CloseDevice()
+ 	return (XN_STATUS_OK);
+ }
+ 
+-XnStatus Enumerate(XnUInt16 nProduct, XnStringsSet& devicesSet)
++XnStatus Enumerate(XnUInt16 nVendor, XnUInt16 nProduct, XnStringsSet& devicesSet)
+ {
+ 	XnStatus nRetVal = XN_STATUS_OK;
+ 	
+ 	const XnUSBConnectionString* astrDevicePaths;
+ 	XnUInt32 nCount;
+ 
+-	nRetVal = xnUSBEnumerateDevices(XN_SENSOR_VENDOR_ID, nProduct, &astrDevicePaths, &nCount);
++	nRetVal = xnUSBEnumerateDevices(nVendor, nProduct, &astrDevicePaths, &nCount);
+ 	XN_IS_STATUS_OK(nRetVal);
+ 
+ 	for (XnUInt32 i = 0; i < nCount; ++i)
+@@ -406,7 +406,7 @@ XnStatus XnSensorIO::EnumerateSensors(XnConnectionString* aConnectionStrings, Xn
+ 		// search for supported devices
+ 		for (XnUInt32 i = 0; i < ms_supportedProductsCount; ++i)
+ 		{
+-			nRetVal = Enumerate(ms_supportedProducts[i], devicesSet);
++			nRetVal = Enumerate(XN_SENSOR_VENDOR_ID, ms_supportedProducts[i], devicesSet);
+ 			XN_IS_STATUS_OK(nRetVal);
+ 		}
+ 	}
+@@ -416,7 +416,7 @@ XnStatus XnSensorIO::EnumerateSensors(XnConnectionString* aConnectionStrings, Xn
+ 	// search for supported devices
+ 	for (XnUInt32 i = 0; i < ms_supportedProductsCount; ++i)
+ 	{
+-		nRetVal = Enumerate(ms_supportedProducts[i], devicesSet);
++		nRetVal = Enumerate(XN_SENSOR_VENDOR_ID, ms_supportedProducts[i], devicesSet);
+ 		XN_IS_STATUS_OK(nRetVal);
+ 	}
+ #endif

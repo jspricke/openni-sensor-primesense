@@ -1,0 +1,23 @@
+From: Jochen Sprickerhof <jochen@sprickerhof.de>
+Date: Mon, 7 Jan 2013 21:22:08 +0100
+Subject: Set UsbInterface to 0
+
+taken from
+https://github.com/rbrusu/Sensor/commit/beaaefddf0adf2f1049538ee20c63ee37c4594cb
+---
+ Data/GlobalDefaults.ini |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Data/GlobalDefaults.ini b/Data/GlobalDefaults.ini
+index 9d013c0..cfdbeb4 100644
+--- a/Data/GlobalDefaults.ini
++++ b/Data/GlobalDefaults.ini
+@@ -60,7 +60,7 @@ LogMasks=ALL
+ ;APCEnabled=1
+ 
+ ; USB interface to be used. 0 - FW Default, 1 - ISO endpoints, 2 - BULK endpoints. Default: Arm - 2, other platforms - 1
+-;UsbInterface=2
++UsbInterface=0
+ 
+ [Depth]
+ ; Output format. 0 - Shift values, 1 - depth values (default)

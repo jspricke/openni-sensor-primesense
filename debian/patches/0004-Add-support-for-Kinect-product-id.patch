@@ -1,0 +1,48 @@
+From: Jochen Sprickerhof <jochen@sprickerhof.de>
+Date: Tue, 6 Nov 2012 20:39:14 +0100
+Subject: Add support for Kinect product id
+
+taken from https://kforge.ros.org/openni/drivers
+---
+ Source/XnDeviceSensorV2/XnDeviceSensorIO.cpp |    7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/Source/XnDeviceSensorV2/XnDeviceSensorIO.cpp b/Source/XnDeviceSensorV2/XnDeviceSensorIO.cpp
+index 2c5f208..a3a7a35 100644
+--- a/Source/XnDeviceSensorV2/XnDeviceSensorIO.cpp
++++ b/Source/XnDeviceSensorV2/XnDeviceSensorIO.cpp
+@@ -30,6 +30,7 @@
+ // Defines
+ //---------------------------------------------------------------------------
+ #define XN_SENSOR_VENDOR_ID			0x1D27
++#define XN_SENSOR_MSK_VENDOR_ID 0x045E
+ 
+ //---------------------------------------------------------------------------
+ // Enums
+@@ -49,6 +50,8 @@ XnUInt16 XnSensorIO::ms_supportedProducts[] =
+ 	0x0500,
+ 	0x0600,
+ 	0x0601,
++	0x02AE,
++	0x02BF,
+ };
+ 
+ XnUInt32 XnSensorIO::ms_supportedProductsCount = sizeof(XnSensorIO::ms_supportedProducts) / sizeof(XnSensorIO::ms_supportedProducts[0]);
+@@ -409,6 +412,8 @@ XnStatus XnSensorIO::EnumerateSensors(XnConnectionString* aConnectionStrings, Xn
+ 		{
+ 			nRetVal = Enumerate(XN_SENSOR_VENDOR_ID, ms_supportedProducts[i], devicesSet);
+ 			XN_IS_STATUS_OK(nRetVal);
++			nRetVal = Enumerate(XN_SENSOR_MSK_VENDOR_ID, ms_supportedProducts[i], devicesSet);
++			XN_IS_STATUS_OK(nRetVal);
+ 		}
+ 	}
+ #else
+@@ -419,6 +424,8 @@ XnStatus XnSensorIO::EnumerateSensors(XnConnectionString* aConnectionStrings, Xn
+ 	{
+ 		nRetVal = Enumerate(XN_SENSOR_VENDOR_ID, ms_supportedProducts[i], devicesSet);
+ 		XN_IS_STATUS_OK(nRetVal);
++		nRetVal = Enumerate(XN_SENSOR_MSK_VENDOR_ID, ms_supportedProducts[i], devicesSet);
++		XN_IS_STATUS_OK(nRetVal);
+ 	}
+ #endif
+ 	

@@ -7,7 +7,7 @@ Subject: Don't write log file upon OpenNI invocation
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/Data/GlobalDefaults.ini b/Data/GlobalDefaults.ini
-index fcfec6c..527cb34 100644
+index eee0d2c..9d013c0 100644
 --- a/Data/GlobalDefaults.ini
 +++ b/Data/GlobalDefaults.ini
 @@ -6,7 +6,7 @@ LogMasks=ALL

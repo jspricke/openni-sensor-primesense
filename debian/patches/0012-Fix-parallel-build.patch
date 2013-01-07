@@ -8,7 +8,7 @@ taken from https://kforge.ros.org/openni/drivers
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/Platform/Linux/CreateRedist/RedistMaker b/Platform/Linux/CreateRedist/RedistMaker
-index cb4489c..4d58a30 100644
+index bb27bd4..8815fd6 100755
 --- a/Platform/Linux/CreateRedist/RedistMaker
 +++ b/Platform/Linux/CreateRedist/RedistMaker
 @@ -67,7 +67,7 @@ rm -rf ../$REDIST_DIR

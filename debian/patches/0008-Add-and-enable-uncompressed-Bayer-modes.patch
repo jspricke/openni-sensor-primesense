@@ -1,0 +1,138 @@
+From: Jochen Sprickerhof <jochen@sprickerhof.de>
+Date: Tue, 6 Nov 2012 20:43:44 +0100
+Subject: Add and enable (uncompressed) Bayer modes
+
+taken from https://kforge.ros.org/openni/drivers
+---
+ Source/XnDeviceSensorV2/XnHostProtocol.cpp         |   12 ++++++++++++
+ Source/XnDeviceSensorV2/XnHostProtocol.h           |    4 ++--
+ Source/XnDeviceSensorV2/XnSensorDepthStream.h      |    6 +++---
+ Source/XnDeviceSensorV2/XnSensorFirmwareParams.cpp |    2 --
+ Source/XnDeviceSensorV2/XnSensorImageStream.h      |    6 +++---
+ 5 files changed, 20 insertions(+), 10 deletions(-)
+
+diff --git a/Source/XnDeviceSensorV2/XnHostProtocol.cpp b/Source/XnDeviceSensorV2/XnHostProtocol.cpp
+index dadaf16..18e3c37 100644
+--- a/Source/XnDeviceSensorV2/XnHostProtocol.cpp
++++ b/Source/XnDeviceSensorV2/XnHostProtocol.cpp
+@@ -201,6 +201,10 @@ XnStatus XnHostProtocolInitFWParams(XnDevicePrivateData* pDevicePrivateData, XnU
+ 		{ XN_IO_IMAGE_FORMAT_YUV422, XN_RESOLUTION_QVGA, 30 },
+ 		{ XN_IO_IMAGE_FORMAT_YUV422, XN_RESOLUTION_QVGA, 60 },
+ 		{ XN_IO_IMAGE_FORMAT_YUV422, XN_RESOLUTION_VGA, 30 },
++		{ XN_IO_IMAGE_FORMAT_BAYER, XN_RESOLUTION_SXGA, 15 },
++		{ XN_IO_IMAGE_FORMAT_BAYER, XN_RESOLUTION_QVGA, 30 },
++		{ XN_IO_IMAGE_FORMAT_BAYER, XN_RESOLUTION_QVGA, 60 },
++		{ XN_IO_IMAGE_FORMAT_BAYER, XN_RESOLUTION_VGA, 30 },
+ 	};
+ 	nRetVal = pDevicePrivateData->FWInfo.imageBulkModes.AddLast(imageCommonModes, sizeof(imageCommonModes)/sizeof(imageCommonModes[0]));
+ 	XN_IS_STATUS_OK(nRetVal);
+@@ -212,6 +216,10 @@ XnStatus XnHostProtocolInitFWParams(XnDevicePrivateData* pDevicePrivateData, XnU
+ 		{ XN_IO_IMAGE_FORMAT_UNCOMPRESSED_YUV422, XN_RESOLUTION_QVGA, 30 },
+ 		{ XN_IO_IMAGE_FORMAT_UNCOMPRESSED_YUV422, XN_RESOLUTION_QVGA, 60 },
+ 		{ XN_IO_IMAGE_FORMAT_UNCOMPRESSED_YUV422, XN_RESOLUTION_VGA, 30 },
++		{ XN_IO_IMAGE_FORMAT_UNCOMPRESSED_BAYER, XN_RESOLUTION_SXGA, 15 },
++		{ XN_IO_IMAGE_FORMAT_UNCOMPRESSED_BAYER, XN_RESOLUTION_QVGA, 30 },
++		{ XN_IO_IMAGE_FORMAT_UNCOMPRESSED_BAYER, XN_RESOLUTION_QVGA, 60 },
++		{ XN_IO_IMAGE_FORMAT_UNCOMPRESSED_BAYER, XN_RESOLUTION_VGA, 30 },
+ 	};
+ 	nRetVal = pDevicePrivateData->FWInfo.imageIsoModes.AddLast(imageIsoModes, sizeof(imageIsoModes)/sizeof(imageIsoModes[0]));
+ 	XN_IS_STATUS_OK(nRetVal);
+@@ -348,6 +356,8 @@ XnStatus XnHostProtocolInitFWParams(XnDevicePrivateData* pDevicePrivateData, XnU
+ 		{
+ 			{ XN_IO_IMAGE_FORMAT_YUV422, XN_RESOLUTION_QVGA, 25 },
+ 			{ XN_IO_IMAGE_FORMAT_YUV422, XN_RESOLUTION_VGA, 25 },
++			{ XN_IO_IMAGE_FORMAT_BAYER, XN_RESOLUTION_QVGA, 25 },
++			{ XN_IO_IMAGE_FORMAT_BAYER, XN_RESOLUTION_VGA, 25 },
+ 		};
+ 		nRetVal = pDevicePrivateData->FWInfo.imageBulkModes.AddLast(imageModes25FpsCommon, sizeof(imageModes25FpsCommon)/sizeof(imageModes25FpsCommon[0]));
+ 		XN_IS_STATUS_OK(nRetVal);
+@@ -358,6 +368,8 @@ XnStatus XnHostProtocolInitFWParams(XnDevicePrivateData* pDevicePrivateData, XnU
+ 		{
+ 			{ XN_IO_IMAGE_FORMAT_UNCOMPRESSED_YUV422, XN_RESOLUTION_QVGA, 25 },
+ 			{ XN_IO_IMAGE_FORMAT_UNCOMPRESSED_YUV422, XN_RESOLUTION_VGA, 25 },
++			{ XN_IO_IMAGE_FORMAT_UNCOMPRESSED_BAYER, XN_RESOLUTION_QVGA, 25 },
++			{ XN_IO_IMAGE_FORMAT_UNCOMPRESSED_BAYER, XN_RESOLUTION_VGA, 25 },
+ 		};
+ 		nRetVal = pDevicePrivateData->FWInfo.imageIsoModes.AddLast(imageModes25FpsIso, sizeof(imageModes25FpsIso)/sizeof(imageModes25FpsIso[0]));
+ 		XN_IS_STATUS_OK(nRetVal);
+diff --git a/Source/XnDeviceSensorV2/XnHostProtocol.h b/Source/XnDeviceSensorV2/XnHostProtocol.h
+index ead0738..1e75bcf 100644
+--- a/Source/XnDeviceSensorV2/XnHostProtocol.h
++++ b/Source/XnDeviceSensorV2/XnHostProtocol.h
+@@ -105,8 +105,8 @@ enum EPsProtocolOpCodes_V017
+ typedef enum
+ {
+ 	XN_HOST_PROTOCOL_ALGORITHM_DEPTH_INFO	= 0x00,
+-	XN_HOST_PROTOCOL_ALGORITHM_REGISTRATION	= 0x02,
+-	XN_HOST_PROTOCOL_ALGORITHM_PADDING		= 0x03,
++	XN_HOST_PROTOCOL_ALGORITHM_REGISTRATION	= 0x40,
++	XN_HOST_PROTOCOL_ALGORITHM_PADDING		= 0x41,
+ 	XN_HOST_PROTOCOL_ALGORITHM_BLANKING		= 0x06,
+ 	XN_HOST_PROTOCOL_ALGORITHM_DEVICE_INFO	= 0x07,
+ 	XN_HOST_PROTOCOL_ALGORITHM_FREQUENCY	= 0x80
+diff --git a/Source/XnDeviceSensorV2/XnSensorDepthStream.h b/Source/XnDeviceSensorV2/XnSensorDepthStream.h
+index 29e0fbe..471249f 100644
+--- a/Source/XnDeviceSensorV2/XnSensorDepthStream.h
++++ b/Source/XnDeviceSensorV2/XnSensorDepthStream.h
+@@ -39,13 +39,13 @@
+ 	#define XN_DEPTH_STREAM_DEFAULT_RESOLUTION					XN_RESOLUTION_QQVGA
+ #else
+ 	#define XN_DEPTH_STREAM_DEFAULT_INPUT_FORMAT				XN_IO_DEPTH_FORMAT_UNCOMPRESSED_11_BIT
+-	#define XN_DEPTH_STREAM_DEFAULT_RESOLUTION					XN_RESOLUTION_QVGA
++	#define XN_DEPTH_STREAM_DEFAULT_RESOLUTION					XN_RESOLUTION_VGA
+ #endif
+ 
+ #define XN_DEPTH_STREAM_DEFAULT_FPS							30
+ #define XN_DEPTH_STREAM_DEFAULT_OUTPUT_FORMAT				XN_OUTPUT_FORMAT_DEPTH_VALUES
+ #define XN_DEPTH_STREAM_DEFAULT_REGISTRATION				FALSE
+-#define XN_DEPTH_STREAM_DEFAULT_REGISTRATION_TYPE			XN_PROCESSING_DONT_CARE
++#define XN_DEPTH_STREAM_DEFAULT_REGISTRATION_TYPE			XN_PROCESSING_SOFTWARE
+ #define XN_DEPTH_STREAM_DEFAULT_HOLE_FILLER					TRUE
+ #define XN_DEPTH_STREAM_DEFAULT_WHITE_BALANCE				TRUE
+ #define XN_DEPTH_STREAM_DEFAULT_GAIN_OLD					50
+@@ -172,4 +172,4 @@ private:
+ 	XnCallbackHandle m_hReferenceSizeChangedCallback;
+ };
+ 
+-#endif //__XN_SENSOR_DEPTH_STREAM_H__
+\ No newline at end of file
++#endif //__XN_SENSOR_DEPTH_STREAM_H__
+diff --git a/Source/XnDeviceSensorV2/XnSensorFirmwareParams.cpp b/Source/XnDeviceSensorV2/XnSensorFirmwareParams.cpp
+index a661dc6..6598e61 100644
+--- a/Source/XnDeviceSensorV2/XnSensorFirmwareParams.cpp
++++ b/Source/XnDeviceSensorV2/XnSensorFirmwareParams.cpp
+@@ -504,12 +504,10 @@ XnStatus XnSensorFirmwareParams::SetImageFormat(XnUInt64 nValue)
+ {
+ 	XnStatus nRetVal = XN_STATUS_OK;
+ 
+-/*	
+ 	if (nValue == XN_IO_IMAGE_FORMAT_UNCOMPRESSED_BAYER)
+ 	{
+ 		nValue = XN_IO_IMAGE_FORMAT_BAYER;
+ 	}
+-*/
+ 
+ 	nRetVal = SetFirmwareParam(&m_ImageFormat, nValue);
+ 	XN_IS_STATUS_OK(nRetVal);
+diff --git a/Source/XnDeviceSensorV2/XnSensorImageStream.h b/Source/XnDeviceSensorV2/XnSensorImageStream.h
+index 6ec9e56..0519155 100644
+--- a/Source/XnDeviceSensorV2/XnSensorImageStream.h
++++ b/Source/XnDeviceSensorV2/XnSensorImageStream.h
+@@ -32,8 +32,8 @@
+ // Defines
+ //---------------------------------------------------------------------------
+ #define XN_IMAGE_STREAM_DEFAULT_FPS				30
+-#define XN_IMAGE_STREAM_DEFAULT_RESOLUTION		XN_RESOLUTION_QVGA
+-#define XN_IMAGE_STREAM_DEFAULT_INPUT_FORMAT	XN_IO_IMAGE_FORMAT_UNCOMPRESSED_YUV422
++#define XN_IMAGE_STREAM_DEFAULT_RESOLUTION		XN_RESOLUTION_VGA
++#define XN_IMAGE_STREAM_DEFAULT_INPUT_FORMAT	XN_IO_IMAGE_FORMAT_UNCOMPRESSED_BAYER
+ #define XN_IMAGE_STREAM_DEFAULT_OUTPUT_FORMAT	XN_OUTPUT_FORMAT_RGB24
+ #define XN_IMAGE_STREAM_DEFAULT_FLICKER			0
+ #define XN_IMAGE_STREAM_DEFAULT_QUALITY			3
+@@ -163,4 +163,4 @@ private:
+ 	XnActualIntProperty m_ActualRead;
+ };
+ 
+-#endif //__XN_SENSOR_IMAGE_STREAM_H__
+\ No newline at end of file
++#endif //__XN_SENSOR_IMAGE_STREAM_H__

@@ -31,7 +31,7 @@ index 4a04486..09b2812 100644
  
  include ../EngineLibMakefile
 diff --git a/Source/XnFormats/XnStreamCompression.h b/Source/XnFormats/XnStreamCompression.h
-index d49723c..a15c0ec 100644
+index d49723c..06549f5 100644
 --- a/Source/XnFormats/XnStreamCompression.h
 +++ b/Source/XnFormats/XnStreamCompression.h
 @@ -27,7 +27,7 @@
