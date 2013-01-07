@@ -1,3 +1,14 @@
+openni-sensor-primesense (5.1.2.1-1) unstable; urgency=low
+
+  * Change dependency to libjpeg-dev
+  * Imported Upstream version 5.1.2.1
+  * Updated patches to new upstream version
+  * added new udev rules for the latest PrimeSense sensors and Kinect 4
+  * Remove superfluous clean in debian/rules
+  * Bump SONAME
+
+ -- Jochen Sprickerhof <launchpad@jochen.sprickerhof.de>  Tue, 08 Jan 2013 00:27:32 +0100
+
 openni-sensor-primesense (5.1.0.41-2) unstable; urgency=low
 
   * Drop openni-sensor-primesense-bin
