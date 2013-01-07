@@ -3,7 +3,7 @@
 set -e
 
 MODULE_DIR="/usr/lib/"
-MODULES="libXnDeviceSensorV2.so.0 libXnDeviceFile.so.0"
+MODULES="libXnDeviceSensorV2.so.1 libXnDeviceFile.so.1"
 
 case "$1" in
     configure)
