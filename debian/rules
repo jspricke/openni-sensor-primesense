@@ -8,7 +8,7 @@ override_dh_auto_build:
 	cd Platform/Linux/CreateRedist && bash RedistMaker
 
 override_dh_clean:
-	dh_clean -X Platform/Win32/CreateRedist/EE_NI/Includes/EENIVariables.wxi.bak
+	dh_clean
 	rm -rf -- Platform/Linux/Bin/
 	rm -rf -- Platform/Linux/Build/Utils/XnSensorServer/*-Release/
 	rm -rf -- Platform/Linux/Build/XnCore/*-Release/
